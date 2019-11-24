@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  @Author: weiqiang
+  @Date: 2019/11/18 22:58
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传进度条</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <style>
+        .demo1 {
+            background: -webkit-linear-gradient(0deg, red, blue);
+            border-radius: 10px;
+            border: 1px solid #fff;
+        }
+
+        html, body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            line-height: normal;
+            background-color: #fff;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #con {
+            padding: 40px;
+            width: 850px;
+            height: 500px;
+            background-color: #fff;
+            margin: 0 auto; /*水平居中*/
+            position: relative; /*脱离文档流*/
+            top: 50%; /*偏移*/
+            margin-top: -250px;
+        }
+    </style>
+<body style="text-align: center" class="demo1">
+<div id="con">
+    <div style="float: left;margin-top: 40px;">
+        <img src="img-01.png" alt="">
+    </div>
+    <div style="float: right;margin-top: 70px;">
+        <h3>请输入密码</h3>
+        <br>
+        <br>
+        <form action="">
+            <input id="passwd" type="password" style="height: 40px;font-size: 18px;border-radius: 20px;width: 300px;"
+                   placeholder="  Password">
+            <br>
+            <button id="uptea" type="button" class="btn btn-primary"
+                    style="width: 300px;background-color:#a91aff;height: 40px;border-radius: 25px;margin-top: 20px;">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#uptea").click(function () {
+            $.ajax({
+                //请求方式
+                type: "POST",
+                //请求地址
+                url: "/login",
+                data:{
+                  "passwd":$("#passwd").val()
+                },
+                success: function (result) {
+                    if ("true" === result)
+                        window.location.href = "index.html"
+                }
+            });
+        });
+
+    })
+
+</script>
+</body>
+</html>
